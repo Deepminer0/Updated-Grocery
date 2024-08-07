@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="product.css" class="css">
+    <title>Document</title>
+</head>
+
+
+<div class="section">
+    <div class="box">
+      <img src="tomatos.png"alt="">Tomato<br>
+      <h6>500g</h6>
+      <h5>50</h5> 
+      <button class="repairbutton" data-service="veg-tomato">ADD</button>
+    </div>
+
+
+
+
+    <div class="box">
+      <img src="Potato-10-2.png" alt="">Potato<br>
+      <h6>500g</h6>
+      <h5>₹50</h5>
+      <button>ADD</button>
+    </div>
+
+
+    <div class="box">
+      <img src="carrot.png" alt="">Carrot<br>
+      <h6>500g</h6>
+      <h5>₹50</h5>
+      <button>ADD</button></div>
+
+
+    <div class="box"><img src="brinjle.png" alt="">Brinjle<br><h6>500g</h6><h5>₹50</h5>
+      <button>ADD</button></div>
+    <div class="box"><img src="spinach.png" alt="">Spinach<br><h6>500g</h6><h5>₹50</h5>
+      <button>ADD</button></div>
+    <div class="box"><img src="matar.png" alt="">Matar<br><h6>500g</h6><h5>₹50</h5>
+      <button>ADD</button></div>
+    <div class="box"><img src="Capsicum.png" alt="">Capsicum<br><h6>500g</h6><h5>₹50</h5>
+      <button>ADD</button></div>
+    <div class="box"><img src="onion.png" alt="">Onion<br><h6>500g</h6><h5>₹50</h5>
+      <button>ADD</button></div>
+    <div class="box"><img src="dhaniya.png" alt="">Dhaniya<br><h6>500g</h6><h5>₹50</h5>
+      <button>ADD</button></div>
+    <div class="box"><img src="ladiesfinger.webp" alt="">Bhindi<br><h6>500g</h6><h5>₹50</h5>
+      <button>ADD</button></div>
+    <div class="box"><img src="lauki.webp" alt="">Lauki<br><h6>500g</h6><h5>₹50</h5>
+      <button>ADD</button></div>
+    <div class="box"><img src="cacumber.webp" alt="">Khira<br><h6>500g</h6><h5>₹50</h5>
+      <button>ADD</button></div>
+ 
+</div>
+
+
+
+<div class="scrolling-wrapper">
+    <div class="card"><img src="home.png" alt="" ></div>
+    <div class="card" id="cards" onclick="myFunction()"><img src="home.png" alt=""></div>
+    <div class="card"><img src="home.png" alt=""></div>
+    <div class="card"><img src="home.png" alt=""></div>
+    <div class="card"><img src="home.png" alt=""></div>
+    <div class="card"><img src="home.png" alt=""></div>
+    <div class="card"><img src="home.png" alt=""></div>
+    <div class="card"><img src="home.png" alt=""></div>
+    <div class="card"><img src="home.png" alt=""></div>
+  </div>
+</div>
+</body>
+
+
+
+
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.repairbutton').forEach(button => {
+                button.addEventListener('click', function() {
+                    const serviceType = this.getAttribute('data-service');
+                    addServiceToCart(serviceType);
+                });
+            });
+
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('beforeend', data);
+                    const script = document.createElement('script');
+                    script.src = 'footer.js';
+                    script.onload = () => {
+                        updateFooterCart();
+                        document.getElementById('view-cart').addEventListener('click', () => {
+                            window.location.href = 'addtocart.html';
+                        });
+                        document.addEventListener('cartUpdated', updateFooterCart);
+                    };
+                    document.body.appendChild(script);
+                });
+        });
+
+        function addServiceToCart(serviceType) {
+            const services = {
+                'windows-install': { text: "Install Windows", img: "Image/windows.png", price: 50 },
+                'cpu-repair': { text: "CPU Full Repair", img: "Image/cpus.jpg", price: 70 },
+                'motherboard-repair': { text: "Motherboard Repair", img: "Image/motherboard.jpeg", price: 60 },
+                'monitor-repair': { text: "Monitor Repair", img: "Image/monitor.png", price: 40 },
+                'power-supply-failure': { text: "Power Supply Failure", img: "Image/ups.jpeg", price: 30 },
+                'slow-performance': { text: "Slow Performance", img: "Image/slow.png", price: 20 },
+                'pc-crash': { text: "PC Crash", img: "Image/pccrash.png", price: 80 },
+                'veg-tomato':{text: "Tomato",img:"tomatos.png",price:80},
+              
+            };
+
+            const service = services[serviceType];
+            if (!service) return;
+
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            const existingService = cart.find(item => item.text === service.text);
+            if (existingService) {
+                existingService.count += 1;
+            } else {
+                service.count = 1;
+                cart.push(service);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            document.dispatchEvent(new CustomEvent('cartUpdated'));
+        }
+
+        function updateFooterCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCount = cart.reduce((count, service) => count + service.count, 0);
+            document.getElementById('cart-count').innerText = cartCount;
+        }
+    </script>
+
+</html>
