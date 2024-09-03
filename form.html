@@ -9,29 +9,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <div class="menu">
-        <div class="upheader">
-            <h1 id="service-header" class="BodhGayabanner">Order Summary</h1>
-        </div>
+
+    <div class="advertisement">
+        <img src="Image/koreanboy.png"  alt="" srcset="">
+        
+        <h1 class="bannertext">Get your order deliverd in <span>minutes</span></h1>
+
+       <a href="Product.html">Buy in Store</a>
+      
     </div>
+   
 
     <div class="banner2">
+        
         <div id="order-summary"></div>
     </div>
 
     <div class="form-container">
-        <h1>Service Details</h1>
+        <h1>Enter complete address</h1>
         <form id="service-form" name="google-sheet">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="Name" required><br>
+            <label for="name">Reciever Name</label>
+            <input type="text" id="name" name="Name" required placeholder="Reciever Name"><br>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="Email" required><br>
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" name="Phone" required><br>
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="Address" required><br>
+            <input type="email" id="email" name="Email" required placeholder="abc@gmail.com"><br>
+            <label for="phone">Mobile Number</label>
+            <input type="tel" id="phone" name="Mobile" required placeholder="+91XXXXXXXX"><br>            
+            <label for="address">Street, Society , Landmark</label>
+            <input type="text" id="address" name="Address" required placeholder="Enter complete address"><br>
             <label for="pincode">Pin Code:</label>
-            <input type="text" id="pincode" name="Pincode" required><br>
+            <input type="text" id="pincode" name="Pincode" required placeholder="824231"><br>
             <input type="submit" name="submit" value="Place Order">
         </form>
     </div>
@@ -52,89 +58,87 @@
         }
 
         function loadOrderSummary() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const orderSummary = document.getElementById('order-summary');
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const orderSummary = document.getElementById('order-summary');
 
-            if (cart.length === 0) {
-                orderSummary.innerHTML = '<p>No services selected.</p>';
-                return;
-            }
+    if (cart.length === 0) {
+        orderSummary.innerHTML = '<p>No services selected.</p>';
+        return;
+    }
 
-            cart.forEach(service => {
-                const serviceDiv = document.createElement('div');
-                serviceDiv.classList.add('order-item');
-                serviceDiv.innerHTML = `
-                    <img src="${service.img}" class="order-img" alt="${service.text}">
-                    <h2>${service.text}</h2>
-                `;
-                orderSummary.appendChild(serviceDiv);
-            });
+    cart.forEach(item => {
+        const serviceDiv = document.createElement('div');
+        serviceDiv.classList.add('order-item');
+        serviceDiv.innerHTML = `
+            <img src="${item.img}" class="order-img" alt="${item.name}">
+            <h2>${item.name}</h2>
+            <p>Weight: ${item.weight}</p> <!-- Display weight -->
+        `;
+        orderSummary.appendChild(serviceDiv);
+    });
+}
+function generateInvoice(formData, cart) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.text("Invoice", 20, 20);
+    doc.text(`Name: ${formData.get('Name')}`, 20, 30);
+    doc.text(`Email: ${formData.get('Email')}`, 20, 40);
+    doc.text(`Phone: ${formData.get('Mobile')}`, 20, 50);
+    doc.text(`Address: ${formData.get('Address')}`, 20, 60);
+    doc.text(`Pin Code: ${formData.get('Pincode')}`, 20, 70);
+
+    let yOffset = 80;
+    cart.forEach((item, index) => {
+        doc.text(`Service ${index + 1}: ${item.name}`, 20, yOffset);
+        doc.text(`Weight: ${item.weight}`, 20, yOffset + 10);
+        yOffset += 20; // Adjust yOffset to accommodate weight line
+    });
+
+    doc.save('invoice.pdf');
+}
+document.addEventListener('DOMContentLoaded', () => {
+  loadOrderSummary();
+
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwy8xaZDciZIBhFF33Y-YiwhxWloH5t_tFuxrei1SlaJqCJt0EedVlHYSKqvc0hslq-/exec';
+  const form = document.forms['google-sheet'];
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Gather all services and their weights
+    const services = cart.map(service => `${service.name} (${service.weight})`).join(', ');
+
+    // Append the concatenated services string to the form data
+    formData.append('Services', services);
+
+    // Optional: Append weight details if you want them separated
+    formData.append('Weight', cart.map(service => service.weight).join(', '));
+
+    fetch(scriptURL, { method: 'POST', body: formData })
+      .then(response => {
+        if (response.ok) {
+          alert("Cash On Delivery Order Success");
+          localStorage.removeItem('cart');
+          showPopup();
+        } else {
+          throw new Error('Network response was not ok.');
         }
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        alert('There was a problem with the submission. Please try again.');
+      });
 
-        function generateInvoice(formData, cart) {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
+    document.getElementById('download-invoice').addEventListener('click', () => {
+      generateInvoice(formData, cart);
+    });
+  });
+});
 
-            doc.text("Invoice", 20, 20);
-            doc.text(`Name: ${formData.get('Name')}`, 20, 30);
-            doc.text(`Email: ${formData.get('Email')}`, 20, 40);
-            doc.text(`Phone: ${formData.get('Phone')}`, 20, 50);
-            doc.text(`Address: ${formData.get('Address')}`, 20, 60);
-            doc.text(`Pin Code: ${formData.get('Pincode')}`, 20, 70);
-
-            let yOffset = 80;
-            cart.forEach((service, index) => {
-                doc.text(`Service ${index + 1}: ${service.text}`, 20, yOffset);
-                yOffset += 10;
-            });
-
-            doc.save('invoice.pdf');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadOrderSummary();
-
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwy8xaZDciZIBhFF33Y-YiwhxWloH5t_tFuxrei1SlaJqCJt0EedVlHYSKqvc0hslq-/exec';
-            const form = document.forms['google-sheet'];
-
-            form.addEventListener('submit', e => {
-                e.preventDefault();
-
-                const formData = new FormData(form);
-                const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-                // Gather all services from the cart
-                const services = cart.map(service => service.text).join(', ');
-
-                // Append the concatenated services string to the form data
-                formData.append('Services', services);
-
-                console.log('Form Data Entries:');
-                for (let pair of formData.entries()) {
-                    console.log(`${pair[0]}: ${pair[1]}`);
-                }
-
-                fetch(scriptURL, { method: 'POST', body: formData })
-                    .then(response => {
-                        if (response.ok) {
-                            console.log('Success!', response);
-                            alert("Thanks for Contacting us..! We Will Contact You Soon...");
-                            localStorage.removeItem('cart');
-                            showPopup();
-                        } else {
-                            throw new Error('Network response was not ok.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error!', error.message);
-                        alert('There was a problem with the submission. Please try again.');
-                    });
-
-                document.getElementById('download-invoice').addEventListener('click', () => {
-                    generateInvoice(formData, cart);
-                });
-            });
-        });
     </script>
 </body>
 </html>
