@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="perosonalcare.css">
+    <title>Product Page</title>
+</head>
+<body>
+  <div class="storebanner">
+    <img src="Image/perosnlacare.png".png alt="">
+    <h1 class="storename">Personal Care</h1>
+    <h1 class="storedescription">Get Personal care and hygenine items in <span>minutes</span></h1>
+</div>
+
+<div class="section"></div>
+
+<script>
+  const items = {
+    Whisper: [
+      { img: "Image/Clinic/wishper.avif", name: "Wishper Hygene Comfort XL", weight: "50p", price: "₹500" },
+      { img: "Image/Clinic/Wshiperorange.webp", name: "Whisper Choice Ultra", weight: "20p", price: "₹160" },
+      { img: "Image/Clinic/Whitebandage1.jpg", name: "whisper choice ultra", weight: "6p", price: "₹50" },
+      { img: "Image/Clinic/Whisper Sanitary.png", name: "Wishper Choice Regular", weight: "7pc", price: "₹30" },
+      { img: "Image/Clinic/Strayfree1.webp", name: "Stayfree secure XL", weight: "6p", price: "₹42" },
+      { img: "Image/Clinic/Stayfree11.png", name: "Stayfree Cottony Regular", weight: "18pc", price: "₹96" },
+      { img: "Image/Clinic/StayfreeXL.webp", name: "Stayfree secure XL", weight: "18p", price: "₹124" },
+      { img: "Image/Clinic/Stayfreenight.webp", name: "Stayfree Secure Night XXL", weight: "18p", price: "₹120" },
+      { img: "Image/Clinic/Stayfreedry.png", name: "Stayfree Secure DryMax XXL", weight: "28p", price: "₹350" },
+    
+     
+    ],
+    Lotions: [
+    { img: "Image/Clinic/Nivia.webp" , name: "NIVEA Nourishing Body Milk ", weight: "400ml", price: "₹247" },
+    { img: "Image/Clinic/Vaseline.webp" , name: " Vaseline Deep Moisture Serum", weight: "400ml", price: "₹280" },
+    { img: "Image/Clinic/joy.webp" , name: "Joy Cocoa Rich Intense Nourishing  ", weight: "400ml", price: "₹245" },
+    { img: "Image/Clinic/Hia.webp" , name: " Himalaya Herbals Cocoa Butter", weight: "400ml", price: "₹260" },
+    { img: "Image/Clinic/cocobutter.webp" , name: " Himalaya Herbals Cocoa Butter", weight: "100ml", price: "₹75" },
+    { img: "Image/Clinic/Nivia.webp" , name: "NIVEA Nourishing Body Milk ", weight: "600ml", price: "₹314" },
+      { img: "Image/Clinic/joyy.jpg" , name: "Joy Moisture Shea Butter", weight: "400ml", price: "₹275" },
+      { img: "Image/Clinic/mama.webp" , name: " Mamaearth Honey Malai Body ", weight: "400ml", price: "₹394" },
+      { img: "Image/Clinic/honey.webp" , name: " Joy Honey & Almonds Body", weight: "400ml", price: "₹245" },
+      { img: "Image/Clinic/parachute.jpg" , name: "Parachute Advansed Deep Nourish ", weight: "400ml", price: "₹231" },
+      { img: "Image/Clinic/deep.webp" , name: " Vaseline Intensive Care Deep ", weight: "45ml", price: "₹45" },
+      { img: "Image/Clinic/dove.webp" , name: "Dove Body Love, Supple Bounce ", weight: "400ml", price: "₹499" },
+   
+     
+  ],
+  Dettol: [
+      { img: "Image/dettol1.webp", name: "Liquid", weight: "550ml", price: "₹221" },
+      { img: "Image/dettol1.webp", name: "Liquid", weight: "125ml", price: "₹75" },
+      { img: "Image/dettol1.webp", name: "Liquid", weight: "250ml", price: "₹120" },
+      { img: "Image/Clinic/Handwash1.png", name: "Handwash", weight: "200ml", price: "₹76" },
+      { img: "Image/Clinic/Handwash2.png", name: "Handwash", weight: "200ml", price: "₹76" },
+      { img: "Image/Clinic/Handwash3.png", name: "Handwash", weight: "200ml", price: "₹76" },
+      { img: "Image/Clinic/refil1.webp", name: "Refil", weight: "1500ml", price: "₹190" },
+      { img: "Image/Clinic/refil2.avif", name: "Refil", weight: "1500ml", price: "₹190" },
+      { img: "Image/Clinic/refil1.webp", name: "Refil", weight: "675ml", price: "₹92" },
+      
+     
+
+    ],
+    Oralcare: [
+      { img: "Image/Clinic/seso.jpeg" , name: "Sensodyne ", weight: "70g", price: "₹80" },
+      { img: "Image/Clinic/sensodyne.webp" , name: " Sensodyne ", weight: "150g", price: "₹135" },
+      { img: "Image/Clinic/mint.jpeg" , name: " Sensodyne mint ", weight: "150g", price: "₹240" },
+      { img: "Image/Clinic/herbal.webp" , name: "Colgate Herbal Toothpaste ", weight: "200g", price: "₹260" },
+      { img: "Image/Clinic/dany.jpeg" , name: " Patanjali DantKanti ", weight: "80g", price: "₹60" },
+      { img: "Image/Clinic/kanti.avif" , name: " Patanjali Dantkanti", weight: "100g", price: "₹53" },
+      { img: "Image/Clinic/sesobrush.jpg" , name: "Sensodyne Brush ", weight: "3pc", price: "₹222" },
+      { img: "Image/Clinic/brush.jpg" , name: "Sensodyne Brush ", weight: "1pc", price: "₹60" },
+      { img: "Image/Clinic/mouthcleaner.webp" , name: "Listerine ", weight: "250ml", price: "₹135" },
+      { img: "Image/Clinic/Colag.jpg" , name: " Colgate MaxFresh", weight: "500ml", price: "₹234" },
+      { img: "Image/Clinic/mmm.jpg" , name: " Colgate MaxFresh", weight: "500ml", price: "₹234" },
+  
+     
+  ],
+  Hairoil: [
+      { img: "Image/oilhair2.png" , name: " Bajaj Almond Hair oil", weight: "500ml", price: "₹315" },
+      { img: "Image/personal/parachute.jpg" , name: " Parachute Coconut Oil", weight: "200ml", price: "₹844" },
+      { img: "Image/personal/amvla.jpg" , name: "  Dabur Amla Hair Oil ", weight: "180ml", price: "₹90" },
+      { img: "Image/personal/parachute.jpg" , name: " Parachute Coconut Oil", weight: "500ml", price: "₹265" },
+      { img: "Image/personal/parachute.jpg" , name: " Parachute Coconut Oil", weight: "190ml", price: "₹109" },
+      { img: "Image/personal/jasmine.jpg" , name: "  Jasmine Coconut Hair Oil ", weight: "500ml", price: "₹149" },
+      { img: "Image/oilhair2.png" , name: " Bajaj Almond Hair oil", weight: "475ml", price: "₹267" },
+      { img: "Image/personal/jasmine.jpg" , name: "  Jasmine Coconut Hair Oil ", weight: "400ml+90ml", price: "₹172" },
+      { img: "Image/personal/pilasarso.jpg" , name: "Dabur Sarson Amla Oil,", weight: "80ml", price: "₹20" },
+      { img: "Image/personal/parachute.jpg" , name: " Parachute Coconut Oil", weight: "600ml", price: "₹204" },
+  { img: "Image/personal/jasmine.jpg" , name: "  Jasmine Coconut Hair Oil ", weight: "300ml", price: "₹135" },
+  { img: "Image/personal/jasmine.jpg" , name: "  Jasmine Coconut Hair Oil ", weight: "45ml", price: "₹20" },
+  { img: "Image/personal/amvla.jpg" , name: "  Dabur Amla Hair Oil ", weight: "90ml", price: "₹28" },
+  { img: "Image/personal/amvla.jpg" , name: "  Dabur Amla Hair Oil ", weight: "500ml", price: "₹141" },
+  { img: "Image/personal/amvla.jpg" , name: "  Dabur Amla Hair Oil ", weight: "40ml", price: "₹10" },
+  { img: "Image/personal/pilasarso.jpg" , name: "Dabur Sarson Amla Oil,", weight: "350ml", price: "₹130" },
+  { img: "Image/personal/jar2.jpg" , name: "Parachute Jar Coconut Oil", weight: "175ml", price: "₹85" },
+  { img: "Image/personal/pilasarso.jpg" , name: "Dabur Sarson Amla Oil,", weight: "175ml", price: "₹43" },
+  { img: "Image/personal/pilasarso.jpg" , name: "Dabur Sarson Amla Oil,", weight: "350ml", price: "₹130" },
+  { img: "Image/personal/jar.jpg" , name: " Parachute Jar Coconut Oil ", weight: "600ml", price: "₹243" },
+  { img: "Image/oilhair2.png" , name: " Bajaj Almond Hair oil", weight: "95ml", price: "₹70" },
+    
+    ],
+    Facewash: [
+      { img: "Image/personal/him.webp", name: "Himalaya Purifying Neem ", weight: "100ml", price: "149₹" },
+      { img: "Image/personal/him.webp", name: "Himalaya Purifying Neem ", weight: "200ml", price: "₹299" },
+      { img: "Image/personal/him.webp", name: "Himalaya Purifying Neem ", weight: "400ml", price: "₹425" },
+      { img: "Image/personal/him.webp", name: "Himalaya Purifying Neem ", weight: "300ml", price: "₹345" },
+      { img: "Image/personal/pink.webp", name: "Clear Complexion Brightening ", weight: "100ml", price: "₹169" },
+      { img: "Image/personal/zel.webp", name: "Moisturizing Aloe Vera Face Wash", weight: "100ml", price: "₹140" },
+      { img: "Image/personal/zel.webp", name: "Moisturizing Aloe Vera Face Wash", weight: "200ml", price: "₹235" },
+      { img: "Image/personal/ponds.jpg", name: "POND'S Bright Beauty Glow ", weight: "100ml", price: "₹235" },
+      { img: "Image/personal/pondblack.jpg", name: "POND'S Bright Miracle Detox  ", weight: "100ml", price: "₹177" },
+      { img: "Image/personal/cc.jpg", name: "Clean & Clear  Face Wash", weight: "150ml", price: "₹189" },
+      { img: "Image/personal/ccc.jpg", name: "Clean & Clear Big Pack", weight: "240ml", price: "₹335" },
+      { img: "Image/personal/cccc.jpg", name: "Clean & Clear  Face Wash", weight: "100ml", price: "₹170" },
+      { img: "Image/personal/morning.jpg", name: "Clean & Clear  Energy Lemon ", weight: "100ml", price: "₹119" },
+      { img: "Image/personal/garnier.jpg", name: "Garnier Skin Naturals  ", weight: "100ml", price: "₹135" },
+      { img: "Image/personal/garnier1.jpg", name: "Garnier Men Acno Fight Anti Pimple ", weight: "100ml", price: "₹174" },
+      { img: "Image/personal/gmen.jpg", name: "Garnier Men Oil Clear Deep Cleansing", weight: "100ml", price: "₹225" },
+    
+ 
+
+    
+    ],
+    Soap: [
+      { img: "Image/personal/pears.webp", name: "Pears Soft & Fresh Soap", weight: "100g", price: "₹62" },
+      { img: "Image/personal/pearss.jpg", name: "Pears Oil Clear & Glow Soap Bar", weight: "75g", price: "₹63" },
+      { img: "Image/personal/pearorance.webp", name: "Pears Pure and Gentle Soap ", weight: "100g", price: "₹46" },
+      { img: "Image/personal/margo.webp", name: "Margo Original Neem Soap", weight: "100g", price: "₹32" },
+      { img: "Image/personal/santoor.jpg", name: "Santoor Total Skin Soap", weight: "100g", price: "₹36" },
+      { img: "Image/personal/dove.jpg", name: "Dove Cream Beauty Bathing Bar", weight: "100g", price: "₹65" },
+      { img: "Image/personal/cinthol.jpg", name: "Cinthol Lime Bath Soap", weight: "40g", price: "₹10" },
+      { img: "Image/personal/cintholcool.jpg", name: "Cinthol Cool Bath Soap ", weight: "40g", price: "₹10" },
+      { img: "Image/personal/life.webp", name: "Lifebuoy Cool Fresh Soap Bar", weight: "40g", price: "₹10" },
+      { img: "Image/personal/lifes.avif", name: "Lifebuoy Cool total 10 soap", weight: "75g", price: "₹17" },
+      { img: "Image/personal/lifes.avif", name: "Lifebuoy Cool total 10 soap", weight: "125g", price: "₹35" },
+      { img: "Image/personal/total.avif", name: "Lifebuoy Neem Aloe Vera", weight: "40g", price: "₹10" },
+      { img: "Image/personal/total.avif", name: "Lifebuoy Neem Aloe Vera", weight: "100g", price: "₹38" },
+      { img: "Image/Clinic/Soap2.webp", name: "Dettol Intense Cool Bar", weight: "125gX6", price: "₹340" },
+      { img: "Image/Clinic/Soap1.avif", name: "Dettol Skincare Moisturizing ", weight: "150gX4", price: "₹175" },
+      { img: "Image/Clinic/Soap3.webp", name: "Cool Bathing", weight: "300gX4 ", price: "₹121" },
+      { img: "Image/Clinic/11.png", name: "Dettol Neem Soap", weight: "42g", price: "₹10" },
+      { img: "Image/Clinic/10.png", name: "Dettol Skincare Moisturizing  ", weight: "42g", price: "₹10" },
+      { img: "Image/Clinic/13.png", name: "Dettol Intense Cool Bar", weight: "42g", price: "₹10" },
+    
+
+
+    ],
+    Sampoo: [
+      { img: "Image/personal/clicicplus.jpg", name: "Clinic Plus  Shampoo", weight: "175ml", price: "₹87" },
+      { img: "Image/personal/head.jpg", name: "Head & Shoulders  Lemon fresh", weight: "180ml", price: "₹194" },
+      { img: "Image/personal/himalayas.jpg", name: "Himalaya Gentle Daily Care ", weight: "340ml", price: "₹195" },
+      { img: "Image/personal/dovegreen.jpg", name: "Dove Hair Fall Rescue Shampoo ", weight: "180ml", price: "₹180" },
+      { img: "Image/personal/tres.jpg", name: "TRESemme Keratin Smooth ", weight: "185ml", price: "₹180" },
+      { img: "Image/personal/coolss.jpg", name: "Head & Shoulders Cool shampoo", weight: "180ml", price: "₹194" },
+      { img: "Image/personal/sunsilk.jpg", name: "Sunsilk Stunning Black Shine Shampoo", weight: "180ml", price: "₹140" },
+      { img: "Image/personal/pantne.jpg", name: "Pantene Advanced Haircare Solution", weight: "200ml", price: "₹179" },
+      { img: "Image/personal/tresme.jpg", name: "TRESemme Smooth & Shine Shampoo", weight: "185ml", price: "₹190" },
+      { img: "Image/personal/pinks.jpg", name: "Sunsilk Lusciously Thick & Long", weight: "360ml", price: "₹300" },
+      { img: "Image/personal/doveis.jpg", name: "Dove Intense Repair Shampoo", weight: "180ml", price: "₹175" },
+
+  
+  ],
+  BodySpray: [
+      { img: "Image/personal/spray.jpg", name: "Park Avenue Original ", weight: "150ml", price: "₹101" },
+      { img: "Image/personal/spray2.jpg", name: "Park Avenue Signature Voyage", weight: "150ml", price: "₹200" },
+      { img: "Image/personal/spray3.jpg", name: "NIVEA MEN Fresh Active Origina", weight: "150ml", price: "₹162" },
+      { img: "Image/personal/fog.jpg", name: "Fogg Deodorant women", weight: "150ml", price: "₹150" },
+      { img: "Image/personal/foggg.jpg", name: "FOGG Royal No Gas Deodorant For Men", weight: "150ml", price: "₹192" },
+      { img: "Image/personal/axe.jpg", name: "Axe Signature Mysterious No Gas Deodorant", weight: "154ml", price: "₹155" },
+     
+     
+   
+  ]
+  };
+
+  
+  const section = document.querySelector(".section");
+  
+  function displayItems(category) {
+  section.innerHTML = ""; // Clear previous items
+  items[category].forEach(item => {
+      section.innerHTML += `
+          <div class="box">
+              <img src="${item.img}" alt="${item.name}" onclick="openProductDetails('${item.img}', '${item.name}', '${item.weight}', '${item.price.replace('₹', '')}')">
+              <h3>${item.name}</h3>
+              <h6>${item.weight}</h6>
+              <h5>${item.price}</h5>
+              <button class="add-button" data-name="${item.name}" data-price="${item.price.replace('₹', '')}" data-weight="${item.weight}">ADD</button>
+          </div>
+      `;
+  });
+
+  document.querySelectorAll('.add-button').forEach(button => {
+      button.addEventListener('click', function() {
+          const itemName = this.getAttribute('data-name');
+          const itemPrice = parseFloat(this.getAttribute('data-price'));
+          const itemWeight = this.getAttribute('data-weight');
+          const itemImg = this.parentNode.querySelector('img').getAttribute('src');
+          addItemToCart(itemName, itemPrice, itemImg, itemWeight);
+      });
+  });
+}
+
+
+function openProductDetails(img, name, weight, price) {
+  const url = `product-details.html?img=${encodeURIComponent(img)}&name=${encodeURIComponent(name)}&weight=${encodeURIComponent(weight)}&price=${encodeURIComponent(price)}`;
+  window.location.href = url;
+}
+
+
+// ---------------------------------------------------------------------------------------------GRAM PROBLEM SOLVED__________________________________________
+function addItemToCart(itemName, itemPrice, itemImg, itemWeight) {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingItem = cart.find(item => item.name === itemName);
+
+  if (existingItem) {
+      existingItem.count++;
+  } else {
+      cart.push({
+          name: itemName,
+          price: itemPrice,
+          img: itemImg,
+          weight: itemWeight, // Ensure itemWeight is a string or number
+          count: 1
+      });
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+  document.dispatchEvent(new Event('cartUpdated'));
+}
+
+
+// ---------------------------------------------------------------------------------------------GRAM PROBLEM SOLVED__________________________________________
+function updateFooterCart() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartCount = cart.reduce((count, item) => count + item.count, 0);
+  const totalPrice = cart.reduce((total, item) => total + (item.price * item.count), 0);
+
+  document.getElementById('cart-count').innerText = cartCount;
+  document.getElementById('total-price').innerText = `₹${totalPrice}`;
+}
+
+displayItems('Whisper');  // Initial display
+
+fetch('footer.html')
+  .then(response => response.text())
+  .then(data => {
+    document.body.insertAdjacentHTML('beforeend', data);
+    const script = document.createElement('script');
+    script.src = 'footer.js';
+    script.onload = () => {
+      updateFooterCart();
+      document.getElementById('view-cart').addEventListener('click', () => {
+        window.location.href = 'addToCart.html';
+      });
+      document.addEventListener('cartUpdated', updateFooterCart);
+    };
+    document.body.appendChild(script);
+  });
+</script>
+
+
+<div class="scrolling-wrapper">
+    <div class="card" onclick="displayItems('Whisper')"><img src="Image/Clinic/wishper.avif" alt="whisper "class="menuhover"></div>
+    <div class="card" onclick="displayItems('Lotions')"><img src="Image/Clinic/lotions.webp" alt="Lotions" class="menuhover"></div>
+    <div class="card" onclick="displayItems('Dettol')"><img src="Image/dettol1.webp" alt="Dettol"class="menuhover"></div>
+    <div class="card" onclick="displayItems('Oralcare')"><img src="Image/colget.png" alt="Oral Care" class="menuhover"></div>
+    <div class="card" onclick="displayItems('Hairoil')"><img src="Image/oilhair2.png" alt="Hair oil" class="menuhover"></div>
+    <div class="card" onclick="displayItems('Facewash')"><img src="Image/facewash.png" alt="Tissue Paper"class="menuhover"></div>
+    <div class="card" onclick="displayItems('Soap')"><img src="Image/soap.png" alt="Soap"class="menuhover"></div>
+    <div class="card" onclick="displayItems('Sampoo')"><img src="Image/sunsilk.webp" alt="Sampoo and conditioners" class="menuhover"></div>
+    <div class="card" onclick="displayItems('BodySpray')"><img src="Image/spray.webp" alt="Household" class="menuhover"></div>
+</div>
+</body>
+</html>
